@@ -28,7 +28,10 @@ jobs:
         run: npm install
 
       - name: Compile the app
+        env: 
+          REACT_APP_WEATHER_API_KEY: ${{ secrets.REACT_APP_WEATHER_API_KEY }}
         run: npm run build
+        
       
       - name: Deploy build to S3 Bucket
         run: aws s3 sync ./build/ s3://react-weather-app-gv --delete
